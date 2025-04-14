@@ -19,7 +19,6 @@
     "express": "^5.1.0",
     "mongoose": "^8.13.2",
     "serverless-http": "^3.2.0",
-    "vercel": "^41.6.0",
-    "winston": "^3.17.0"
+    "vercel": "^41.6.0"
   }
 }
