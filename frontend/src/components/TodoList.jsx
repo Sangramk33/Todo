@@ -17,7 +17,7 @@ const TodoList = () => {
     try {
       console.log(import.meta.env.VITE_API_URL)
       console.log('Fetching todos from /api/todos...');
-      const res = await axios.get(import.meta.env.VITE_API_URL);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/todos`);
       setTodos(res.data);
       console.log('Todos fetched:', res.data);
       setError(null);
@@ -38,7 +38,7 @@ const TodoList = () => {
     setLoading(true);
     try {
       console.log('Adding todo:', text);
-      const res = await axios.post(import.meta.env.VITE_API_URL, { text });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/todos`, { text });
       setTodos([res.data, ...todos]);
       setText('');
       console.log('Todo added:', res.data);
@@ -54,7 +54,7 @@ const TodoList = () => {
   const toggleTodo = async (id) => {
     try {
       console.log(`Toggling todo: ${id}`);
-      const res = await axios.patch(`${import.meta.env.VITE_API_URL}/${id}`);
+      const res = await axios.patch(`${import.meta.env.VITE_API_URL}/api/todos/${id}`);
       setTodos(todos.map((todo) => (todo._id === id ? res.data : todo)));
       console.log('Todo toggled:', res.data);
       setError(null);
@@ -67,7 +67,7 @@ const TodoList = () => {
   const deleteTodo = async (id) => {
     try {
       console.log(`Deleting todo: ${id}`);
-      await axios.delete(`${import.meta.env.VITE_API_URL}/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/todos/${id}`);
       setTodos(todos.filter((todo) => todo._id !== id));
       console.log(`Todo deleted: ${id}`);
       setError(null);
